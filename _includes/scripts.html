@@ -1,0 +1,129 @@
+<script src="{{ site.baseurl }}/assets/js/main.js" type="module"></script>
+<script src="{{ site.baseurl }}/assets/js/libs/iframeResizer.min.js"></script>
+<script src="{{ site.baseurl }}/assets/js/libs/iframeResizer.min.js"></script>
+<script src="{{ site.baseurl }}/assets/js/resize.js"></script>
+<script src="{{ site.baseurl }}/assets/js/resize.js"></script>
+<script src="{{ site.baseurl }}/assets/js/modules/handleCopyClick.js"></script>
+<script src="{{ site.baseurl }}/assets/js/modules/handleCopyClick.js"></script>
+<script>
+    function toggleLanguageSelector() {
+        var languageOptions = document.getElementById("language");
+        var langPrefix = document.getElementById("langPrefix");
+        var arrowIcon = document.getElementById("arrowIcon");
+        if (
+            languageOptions.style.display === "none" ||
+            languageOptions.style.display === ""
+        ) {
+            languageOptions.style.display = "block";
+            langPrefix.style.display = "none";
+            arrowIcon.style.transform = "rotate(180deg)";
+        } else {
+            languageOptions.style.display = "none";
+            langPrefix.style.display = "block";
+            arrowIcon.style.transform = "";
+        }
+    }
+
+    const lang = document.documentElement.lang || "es";
+
+    updateLanguageOptions(lang);
+
+    function updateLanguageOptions(currentLang) {
+        const languageOptionItems = document.querySelectorAll(
+            ".languageOptionItem"
+        );
+        languageOptionItems.forEach((option) => {
+            if (option.dataset.lang === currentLang) {
+                option.classList.add("selected");
+            } else {
+                option.classList.remove("selected");
+            }
+        });
+    }
+
+    function changeLanguage(newLang) {
+        var currentLang = document.documentElement.lang || "es";
+
+        if (currentLang !== newLang) {
+            var jekyllBaseUrl = "{{ site.baseurl }}";
+            var urlPath = "{{page.url}}".replace(jekyllBaseUrl, "");
+
+            var newUrl;
+
+            if (currentLang !== "es") {
+                var languageRegex = /\/{{ site.language }}$/;
+                jekyllBaseUrl = jekyllBaseUrl.replace(languageRegex, "");
+            }
+
+            if (newLang === "es") {
+                newUrl = `${jekyllBaseUrl}${urlPath}`;
+            } else {
+                newUrl = `${jekyllBaseUrl}/${newLang}${urlPath}`;
+            }
+
+            document.documentElement.lang = newLang;
+            updateLanguageOptions(newLang);
+
+            window.location.href = newUrl;
+        }
+    }
+
+    document.addEventListener("click", function (event) {
+        var languageOptions = document.getElementById("language");
+        var languageSelector = document.getElementById("languageSelector");
+        var arrowIcon = document.getElementById("arrowIcon");
+        var langPrefix = document.getElementById("langPrefix");
+        if (
+            event.target !== languageOptions &&
+            event.target !== languageSelector &&
+            !languageOptions.contains(event.target) &&
+            !languageSelector.contains(event.target)
+        ) {
+            languageOptions.style.display = "none";
+            arrowIcon.style.transform = "";
+            langPrefix.style.display = "block";
+        }
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const translations = {
+            es: {
+                download: "Descargar PDF",
+                alert: "Este artículo fue traducido usando IA.",
+            },
+            en: {
+                download: "Download PDF",
+                alert: "This article was translated using AI.",
+            },
+            pt: {
+                download: "Baixar PDF",
+                alert: "Este artigo foi traduzido com recurso a IA.",
+            },
+        };
+
+        const lang = document.documentElement.lang || "es";
+
+        const translatedDownloadText = translations[lang].download;
+        const translatePDFElement = document.getElementById("translatePDF");
+
+        if (translatePDFElement) {
+            translatePDFElement.textContent = translatedDownloadText;
+            const pdfContainer = document.getElementById("pdf-container");
+            if (pdfContainer) {
+                pdfContainer.style.display = "block";
+            }
+        }
+
+        const translatedAlertText = translations[lang].alert;
+        const alertTextElement = document.querySelector(".alertText");
+        const iaMessageDiv = document.querySelector("#iaMessage");
+
+        if (translatedAlertText && alertTextElement && iaMessageDiv) {
+            alertTextElement.textContent = translatedAlertText;
+            iaMessageDiv.style.display = "flex";
+        } else {
+            iaMessageDiv.style.display = "none";
+        }
+    });
+</script>

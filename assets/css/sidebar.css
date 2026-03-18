@@ -1,0 +1,53 @@
+.logo .title {
+    line-height: 1 !important;
+}
+.collapsible {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+.collapsible span {
+    transform: rotate(-90deg);
+    transition: 0.5s;
+    filter: invert(100%) contrast(100%);
+}
+
+.collapsible_arrow {
+    transform: rotate(0deg) !important;
+}
+
+.collapsible_content {
+    display: none;
+    overflow: hidden;
+    height: 0;
+    transition: 1s ease-out;
+}
+
+.collapsible_active {
+    display: block;
+    height: auto;
+}
+
+.collapsible_content li a {
+    display: flex;
+    align-items: center;
+}
+
+.collapsible_content li a .beta_tag {
+    background-color: white;
+    color: #716e7e;
+    min-width: 64px;
+    width: 64px;
+    border-radius: 25px;
+    font-size: 13px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.collapsible_child {
+    padding-left: 15px;
+}

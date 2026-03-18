@@ -1,0 +1,51 @@
+details#product {
+    display: block;
+    overflow: hidden;
+    color: $heading-font-color;
+    background-color: #f9f9fb;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 16px;
+    border-radius: 3px;
+}
+details:focus#product  {
+    border-bottom: 1px solid;
+    background-color: $background-color-blockquote;
+}
+details:hover#product {
+    
+    border-bottom: 1px solid;
+    background-color: $background-color-blockquote;;
+}
+details#product summary::marker {
+  font-size: 1em;
+  content: '💡';
+}
+details {
+  display: block;
+  overflow: hidden;
+  color: #727e89;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 3px;
+}
+details:hover {  
+  border-bottom: none;
+  background-color: #ffffff;
+}
+details:focus{
+  border-bottom: none;
+  background-color: #ffffff;
+}
+details summary::marker {
+  font-size: 1em;
+  content: ' ⇩ ';
+}
+
+details[open] summary::marker { 
+  content:" ⇧ "; 
+}
+summary { 
+  font-weight: 600;  
+}

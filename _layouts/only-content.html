@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html id="sg" {% if site.language %} lang="{{ site.language }}" {% endif %}>
+    <head>
+        {% include header.html %}
+    </head>
+
+    <body id="sg">
+        <div>
+            <main id="sgMain" class="sg-main">
+                <article id="documentationArea" class="sg_doc">
+                    <div id="article-content">{{ content }}</div>
+                </article>
+            </main>
+        </div>
+        {% include scripts.html %}
+    </body>
+</html>
