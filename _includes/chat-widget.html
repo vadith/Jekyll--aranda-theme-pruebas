@@ -1,0 +1,63 @@
+{% if site.chat_widget.enabled %}
+{% assign chat_product = site.chat_widget.product | default: "" %}
+{% if chat_product == "" %}
+  {% assign chat_product = site.baseurl | remove_first: "/" | upcase %}
+{% endif %}
+
+<script src="https://app-aranda-docsagentdev.azurewebsites.net/assets/chat-widget-loader.js"></script>
+<script>
+  (function () {
+    if (!window.ArandaChatWidget) return;
+
+    var isSmall = window.innerWidth <= 768;
+    var pad = isSmall ? 12 : 24;
+
+    window.ArandaChatWidget.init({
+      apiBaseUrl: "{{ site.chat_widget.api_base_url }}",
+
+      placement: {
+        corner: "bottom-right",
+        offsetX: isSmall ? 8 : 24,
+        offsetY: isSmall ? 8 : 24,
+      },
+
+      panel: {
+        width:        Math.min(440, window.innerWidth  - pad),
+        height:       Math.min(680, window.innerHeight - pad),
+        borderRadius: 24,
+        borderColor:  "#e4e7ec",
+        background:   "#ffffff",
+      },
+
+      launcher: {
+        label:           "Abrir asistente",
+        iconText:        "AI",
+        size:            60,
+        backgroundColor: "#111827",
+        textColor:       "#ffffff",
+      },
+
+      embedConfig: {
+        locale: "es-419",
+        branding: {
+          agentName: "Asistente",
+        },
+        products: {
+          defaultProduct: "{{ chat_product }}",
+          showPicker:     false,
+        },
+        shell: {
+          themeVars: {
+            "--primary":        "#111827",
+            "--primary-dark":   "#0f172a",
+          },
+        },
+        chatkit: {
+          header:  { enabled: false },
+          history: { enabled: false },
+        },
+      },
+    });
+  })();
+</script>
+{% endif %}

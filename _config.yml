@@ -126,4 +126,15 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 ## Disable to prevent styles from being generated.
 sass:
   sass_dir: _sass
-  style: compressed   
+  style: compressed
+
+## Chat Widget
+## ===========
+## El loader y la app del widget están en producción (CDN externo).
+## Cada sitio de producto solo necesita habilitar el widget en su _config.yml.
+## El producto se deriva automáticamente del baseurl (ej. /asms → ASMS).
+
+chat_widget:
+  enabled: true
+  api_base_url: https://app-aranda-docsagentdev.azurewebsites.net
+  # product:    # Opcional: sobreescribe la derivación automática por baseurl
